@@ -1,0 +1,10 @@
+package com.uisrael.juridic.services;
+
+import com.uisrael.juridic.model.Plazo;
+
+import java.util.List;
+
+public interface IPlazoServices {
+    public void insertPlazo(Plazo nuevo);
+    public List<Plazo> listPlazo();
+}
