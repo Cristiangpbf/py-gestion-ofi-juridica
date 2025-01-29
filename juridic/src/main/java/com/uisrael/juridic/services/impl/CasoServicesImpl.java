@@ -24,6 +24,22 @@ public class CasoServicesImpl implements ICasoServices {
     }
 
     @Override
+    public void updateCaso(Caso caso) {
+        repo.save(caso);
+    }
+
+    @Override
+    public void deleteCaso(int caso) {
+        repo.deleteById(caso);
+    }
+
+    @Override
+    public Caso getCaso(int id) {
+        return repo.findById(id).get();
+
+    }
+
+    @Override
     public List<Caso> listCaso() {
         return repo.findAll();
     }

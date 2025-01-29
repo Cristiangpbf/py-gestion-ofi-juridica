@@ -1,11 +1,9 @@
 package com.uisrael.juridic.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.io.Serializable;
 
-@Data
 @Entity
 @Table(name = "ENTIDADROL")
 public class EntidadRol implements Serializable {
@@ -22,4 +20,28 @@ public class EntidadRol implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "rolId")
     private Rol rol;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Entidad getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(Entidad entidad) {
+        this.entidad = entidad;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 }

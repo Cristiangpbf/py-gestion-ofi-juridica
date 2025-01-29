@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{plantilla/tema}">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>SB Admin 2 - Blank</title>
+</head>
+
+<body id="page-top">
+
+	<div layout:fragment="contenedor">
+		<div class="card shadow mb-4">
+			<div class="card-body">
+				<div th:if="${error}">
+					<div class="alert alert-danger" role="alert">
+						<h4 class="alert-heading">Nivel de gravedad: <span th:text="${error.gravedad}"></span></h4>
+						<p th:text="${error.mensaje}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

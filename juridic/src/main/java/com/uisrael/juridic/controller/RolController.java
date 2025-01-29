@@ -1,4 +1,4 @@
 package com.uisrael.juridic.controller;
 
-public class eliminar {
+public class RolController {
 }

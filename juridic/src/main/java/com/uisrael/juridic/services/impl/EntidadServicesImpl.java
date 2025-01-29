@@ -16,15 +16,27 @@ public class EntidadServicesImpl implements IEntidadServices {
 
     @Override
     public void insertEntidad(Entidad nuevo) {
-        try {
-            repo.save(nuevo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        repo.save(nuevo);
     }
 
     @Override
     public List<Entidad> listEntidad() {
         return repo.findAll();
+    }
+
+    @Override
+    public Entidad getEntidad(int id) {
+        Entidad entidad = repo.findById(id).get();
+        return entidad;
+    }
+
+    @Override
+    public void updateEntidad(Entidad entidad) {
+        repo.save(entidad);
+    }
+
+    @Override
+    public void deleteEntidad(int id) {
+        repo.deleteById(id);
     }
 }

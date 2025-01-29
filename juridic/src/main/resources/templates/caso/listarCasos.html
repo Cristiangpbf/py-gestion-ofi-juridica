@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{plantilla/tema}">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SB Admin 2 - Blank</title>
+</head>
+
+<body id="page-top">
+
+<div layout:fragment="contenedor">
+
+    <div class="card mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">LISTA DE CASOS</h6>
+
+            <div class="dropdown">
+                <a class="btn btn-primary" th:href="@{/nuevoCaso}"
+                   role="button">Nueva Persona</a>
+            </div>
+
+        </div>
+        <div class="table-responsive p-3">
+            <table class="table align-items-center table-flush" id="dataTable">
+                <thead class="thead-light">
+                <tr>
+                    <th>Codigo Referencia</th>
+                    <th>Tipo caso</th>
+                    <th>Fecha inicio</th>
+                    <th>Detalles</th>
+                    <th>Estado</th>
+                    <th>Fecha creación</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="caso: ${listaCasos}">
+                    <td th:text="${caso.codigoReferencia}"></td>
+                    <td th:text="${caso.tipoCaso}"></td>
+                    <td th:text="${caso.fechaInicio}"></td>
+                    <td th:text="${caso.detalles}"></td>
+                    <td th:text="${caso.estado}"></td>
+                    <td th:text="${caso.fechaCreacion}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{/actualizaCaso(id=${caso.id})}"
+                           role="button">Editar</a>
+                        <a class="btn btn-danger" th:href="@{/eliminarCaso(id=${caso.id})}"
+                           role="button">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

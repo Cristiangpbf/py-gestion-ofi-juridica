@@ -1,11 +1,11 @@
 package com.uisrael.juridic.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
 
-@Data
 @Entity
 public class Caso implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -14,10 +14,10 @@ public class Caso implements Serializable {
     private int id;
     private String codigoReferencia;
     private String tipoCaso;
-    private String fechaInicio;
+    private Date fechaInicio;
     private String detalles;
     private String estado;
-    private String fechaCreacion;
+    private Timestamp fechaCreacion;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "clienteId")
@@ -26,4 +26,76 @@ public class Caso implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "empleadoId")
     private Entidad empleado;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCodigoReferencia() {
+        return codigoReferencia;
+    }
+
+    public void setCodigoReferencia(String codigoReferencia) {
+        this.codigoReferencia = codigoReferencia;
+    }
+
+    public String getTipoCaso() {
+        return tipoCaso;
+    }
+
+    public void setTipoCaso(String tipoCaso) {
+        this.tipoCaso = tipoCaso;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public String getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Timestamp getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Timestamp fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Entidad getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Entidad cliente) {
+        this.cliente = cliente;
+    }
+
+    public Entidad getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Entidad empleado) {
+        this.empleado = empleado;
+    }
 }
