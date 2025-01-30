@@ -26,8 +26,7 @@ public class EntidadServicesImpl implements IEntidadServices {
 
     @Override
     public Entidad getEntidad(int id) {
-        Entidad entidad = repo.findById(id).get();
-        return entidad;
+        return repo.findById(id).get();
     }
 
     @Override
@@ -38,5 +37,10 @@ public class EntidadServicesImpl implements IEntidadServices {
     @Override
     public void deleteEntidad(int id) {
         repo.deleteById(id);
+    }
+
+    @Override
+    public List<Entidad> listaXRol(String nombreRol) {
+        return repo.findByRol(nombreRol);
     }
 }

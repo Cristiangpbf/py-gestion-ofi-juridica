@@ -4,6 +4,7 @@ import com.uisrael.juridic.model.Caso;
 import com.uisrael.juridic.model.Entidad;
 import com.uisrael.juridic.model.dto.ErrorDTO;
 import com.uisrael.juridic.services.ICasoServices;
+import com.uisrael.juridic.services.IEntidadServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class CasoController {
     @Autowired
     private ICasoServices casoService;
 
+    @Autowired
+    private IEntidadServices entidadService;
+
     @GetMapping("/casos")
     public String listarCasos(Model model) {
         List<Caso> listaCasos = casoService.listCaso();
@@ -31,6 +35,10 @@ public class CasoController {
 
     @GetMapping("/nuevoCaso")
     public String nuevoCaso(Model model) {
+        List<Entidad> listaClientes = entidadService.listaXRol("Cliente");
+        List<Entidad> listaEmpleados = entidadService.listaXRol("Empleado");
+        model.addAttribute("listaClientes", listaClientes);
+        model.addAttribute("listaEmpleados", listaEmpleados);
         model.addAttribute("nuevoCaso", new Caso());
         return "/caso/nuevoCaso";
     }
@@ -51,6 +59,10 @@ public class CasoController {
     public String actualizaCaso(@ModelAttribute("id") Integer casoId, Model model) {
         Caso caso = casoService.getCaso(casoId);
         caso.setFechaCreacion(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+        List<Entidad> listaClientes = entidadService.listaXRol("Cliente");
+        List<Entidad> listaEmpleados = entidadService.listaXRol("Empleado");
+        model.addAttribute("listaClientes", listaClientes);
+        model.addAttribute("listaEmpleados", listaEmpleados);
         model.addAttribute("nuevoCaso", caso);
         return "/caso/nuevoCaso";
     }
@@ -58,7 +70,7 @@ public class CasoController {
     @GetMapping("/eliminarCaso")
     public String eliminarCaso(@ModelAttribute("id") Integer casoId, Model model) {
         casoService.deleteCaso(casoId);
-        return "redirect:/entidades";
+        return "redirect:/casos";
     }
 
 }

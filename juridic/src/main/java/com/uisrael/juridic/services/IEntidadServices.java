@@ -10,4 +10,5 @@ public interface IEntidadServices {
     public Entidad getEntidad(int id);
     public void updateEntidad(Entidad entidad);
     public void deleteEntidad(int id);
+    public List<Entidad> listaXRol(String nombreRol);
 }

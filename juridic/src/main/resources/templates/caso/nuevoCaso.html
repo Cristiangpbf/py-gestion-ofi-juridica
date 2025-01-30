@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{plantilla/tema}">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>SB Admin 2 - Blank</title>
+</head>
+
+<body id="page-top">
+
+	<div layout:fragment="contenedor">
+		<!-- Page Heading -->
+		<h1 class="h3 mb-2 text-gray-800">Guardar caso</h1>
+
+		<!-- DataTales Example -->
+		<div class="card shadow mb-4">
+			<div class="card-body">
+				<form th:action="@{/guardarCaso}" th:object="${nuevoCaso}" method="post">
+					
+					<input th:field="*{id}" type="hidden">
+
+					<div class="form-group">
+						<input th:field="*{codigoReferencia}" type="text" class="form-control form-control-user"
+							placeholder="Nombres">
+					</div>
+					<div class="form-group">
+						<label for="clienteID">Tipo de caso:</label>
+						<!-- Select para Tipo de Caso -->
+						<select id="tipoCaso" th:field="*{tipoCaso}" class="form-control">
+							<option value="">Seleccione un tipo de caso</option>
+							<option value="Civil" th:selected="${nuevoCaso.tipoCaso == 'Civil'}">Civil</option>
+							<option value="Penal" th:selected="${nuevoCaso.tipoCaso == 'Penal'}">Penal</option>
+							<option value="Familiar" th:selected="${nuevoCaso.tipoCaso == 'Familiar'}">Familiar</option>
+							<option value="Laboral" th:selected="${nuevoCaso.tipoCaso == 'Laboral'}">Laboral</option>
+							<option value="Mercantil" th:selected="${nuevoCaso.tipoCaso == 'Mercantil'}">Mercantil</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="clienteID">Fecha de inicio:</label>
+						<input th:field="*{fechaInicio}" type="date" class="form-control">
+
+					</div>
+					<div class="form-group">
+						<input th:field="*{detalles}" type="text" class="form-control form-control-user"
+							placeholder="Detalle">
+					</div>
+					<div class="form-group">
+						<!-- Select para Estado del Caso -->
+						<select id="estado" th:field="*{estado}" class="form-control">
+							<option value="">Seleccione un estado</option>
+							<option value="En progreso" th:selected="${nuevoCaso.estado == 'En progreso'}">En progreso</option>
+							<option value="Finalizado" th:selected="${nuevoCaso.estado == 'Finalizado'}">Finalizado</option>
+							<option value="Suspendido" th:selected="${nuevoCaso.estado == 'Suspendido'}">Suspendido</option>
+							<option value="Archivado" th:selected="${nuevoCaso.estado == 'Archivado'}">Archivado</option>
+						</select>
+
+					</div>
+
+					<!-- Select para Cliente -->
+					<div class="form-group">
+						<label for="clienteID">Seleccionar Cliente:</label>
+						<select id="clienteID" th:field="*{cliente}" class="form-control">
+							<option value="">Seleccione un cliente</option>
+							<option th:each="cliente : ${listaClientes}"
+									th:value="${cliente.id}"
+									th:text="${cliente.nombreCompleto}">
+							</option>
+						</select>
+					</div>
+
+					<!-- Select para Empleado -->
+					<div class="form-group">
+						<label for="empleadoID">Seleccionar Empleado:</label>
+						<select id="empleadoID" th:field="*{empleado}" class="form-control">
+							<option value="">Seleccione un empleado</option>
+							<option th:each="empleado : ${listaEmpleados}"
+									th:value="${empleado.id}"
+									th:text="${empleado.nombreCompleto}">
+							</option>
+						</select>
+					</div>
+
+					<!-- submit button -->
+					<div class="form-group">
+						<input class="btn btn-primary" type="submit" value="Enviar">
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
