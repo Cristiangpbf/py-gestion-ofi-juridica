@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{plantilla/tema}">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>SB Admin 2 - Blank</title>
+</head>
+
+<body id="page-top">
+
+	<div layout:fragment="contenedor">
+		<!-- Page Heading -->
+		<h1 class="h3 mb-2 text-gray-800">Guardar nuevo plazo</h1>
+
+		<!-- DataTales Example -->
+		<div class="card shadow mb-4">
+			<div class="card-body">
+				<form th:action="@{/guardarPlazo}" th:object="${nuevoPlazo}" method="post">
+					
+					<input th:field="*{id}" type="hidden">
+					<input type="hidden" name="casoId" th:value="${caso.id}">
+
+					<div class="form-group">
+						<input th:field="*{titulo}" type="text" class="form-control form-control-user"
+							   placeholder="Titulo">
+					</div>
+
+					<div class="form-group">
+						<label>Descripción:</label>
+						<textarea  th:field="*{descripcion}" class="form-control"
+							   placeholder="Descripcion" rows="4"></textarea>
+					</div>
+
+					<div class="form-group">
+						<label >Fecha del evento:</label>
+						<input th:field="*{fechaevento}" type="date" class="form-control">
+					</div>
+
+					<div class="form-group">
+						<label>Recordatorio:</label>
+						<input type="checkbox" th:field="*{recordatorio}" class="form-check-input">
+					</div>
+
+					<div class="form-group">
+						<label>Notificado:</label>
+						<input type="checkbox" th:field="*{notificado}" class="form-check-input">
+					</div>
+
+					<!-- submit button -->
+					<div class="form-group">
+						<input class="btn btn-primary" type="submit" value="Enviar">
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

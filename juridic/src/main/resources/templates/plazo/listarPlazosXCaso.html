@@ -14,10 +14,11 @@
 
     <div class="card mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">LISTA DE CASOS</h6>
+            <h6 class="m-0 font-weight-bold text-primary">LISTA DE PLAZOS</h6>
+            <h5 class="m-0 font-weight-bold text-primary">Código del caso: <span th:text="${caso.codigoReferencia}"></span></h5>
 
             <div class="dropdown">
-                <a class="btn btn-primary" th:href="@{/nuevoCaso}"
+                <a class="btn btn-primary" th:href="@{/nuevoPlazo(id=${caso.id})}"
                    role="button">Nuevo Caso</a>
             </div>
 
@@ -26,30 +27,28 @@
             <table class="table align-items-center table-flush" id="dataTable">
                 <thead class="thead-light">
                 <tr>
-                    <th>Codigo Referencia</th>
-                    <th>Tipo caso</th>
-                    <th>Fecha inicio</th>
-                    <th>Detalles</th>
-                    <th>Estado</th>
-                    <th>Fecha creación</th>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Fecha Inicio</th>
+                    <th>Recordatorio</th>
+                    <th>Notificado</th>
+                    <th>Fecha Creacion</th>
                     <th>Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="caso: ${listaCasos}">
-                    <td th:text="${caso.codigoReferencia}"></td>
-                    <td th:text="${caso.tipoCaso}"></td>
-                    <td th:text="${caso.fechaInicio}"></td>
-                    <td th:text="${caso.detalles}"></td>
-                    <td th:text="${caso.estado}"></td>
-                    <td th:text="${caso.fechaCreacion}"></td>
+                <tr th:each="plazo: ${listaPlazos}">
+                    <td th:text="${plazo.titulo}"></td>
+                    <td th:text="${plazo.descripcion}"></td>
+                    <td th:text="${plazo.fechaevento}"></td>
+                    <td th:text="${plazo.recordatorio}"></td>
+                    <td th:text="${plazo.notificado}"></td>
+                    <td th:text="${plazo.fechacreacion}"></td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{/actualizaCaso(id=${caso.id})}"
+                        <a class="btn btn-primary" th:href="@{/actualizaPlazo(id=${plazo.id})}"
                            role="button">Editar</a>
-                        <a class="btn btn-danger" th:href="@{/eliminarCaso(id=${caso.id})}"
+                        <a class="btn btn-danger" th:href="@{/eliminarPlazo(id=${plazo.id})}"
                            role="button">Eliminar</a>
-                        <a class="btn btn-danger" th:href="@{/plazosXCaso(id=${caso.id})}"
-                           role="button">Plazos</a>
                     </td>
                 </tr>
                 </tbody>

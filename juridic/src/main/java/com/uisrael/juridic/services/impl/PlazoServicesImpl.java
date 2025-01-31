@@ -1,5 +1,6 @@
 package com.uisrael.juridic.services.impl;
 
+import com.uisrael.juridic.model.Caso;
 import com.uisrael.juridic.model.Plazo;
 import com.uisrael.juridic.repository.IPlazoRepository;
 import com.uisrael.juridic.services.IPlazoServices;
@@ -16,15 +17,21 @@ public class PlazoServicesImpl implements IPlazoServices {
 
     @Override
     public void insertPlazo(Plazo nuevo) {
-        try {
-            repo.save(nuevo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        repo.save(nuevo);
     }
 
     @Override
     public List<Plazo> listPlazo() {
         return repo.findAll();
+    }
+
+    @Override
+    public List<Plazo> listPlazoXCasoId(Integer casoId) {
+        return repo.findByCasoId(casoId);
+    }
+
+    @Override
+    public Plazo getPlazo(int id) {
+        return repo.findById(id).get();
     }
 }

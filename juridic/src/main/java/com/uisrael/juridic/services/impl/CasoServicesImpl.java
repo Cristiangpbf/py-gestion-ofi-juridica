@@ -36,7 +36,6 @@ public class CasoServicesImpl implements ICasoServices {
     @Override
     public Caso getCaso(int id) {
         return repo.findById(id).get();
-
     }
 
     @Override
